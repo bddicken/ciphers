@@ -5,6 +5,13 @@ import random
 import sys
 import string
 
+#
+# Cipher
+#
+# This is the super-class that all ciphers should inherit from.  This class doesnt
+# have any actual encryption or decryption funtionality. This is left up to the 
+# sub-classes.
+#
 class Cipher:
     
     def __init__(self):
@@ -19,6 +26,12 @@ class Cipher:
     def decrypt(self, text):
         print "decrypt!"
 
+#
+# Plain
+#
+# This cipher spits out exactly what it is given, for both encryption and 
+# decryption.
+#
 class Plain(Cipher):
     def encrypt(self):
         for line in self.text:
@@ -28,6 +41,11 @@ class Plain(Cipher):
         for line in self.text:
             print line
 
+#
+# BasicRotatingCipher
+#
+# Implements a basic rotating text cipher.
+#
 class BasicRotatingCipher(Cipher):
     primary = list(string.printable)
     cipher = list(string.printable)
@@ -46,13 +64,17 @@ class BasicRotatingCipher(Cipher):
 
     def decrypt(self, text):
         retString = ""
-        #print ">" + text + "<"
         for char in text:
             self.cipher = self.rotate(self.cipher, self.step)
             index = self.cipher.index(char)
             retString += self.primary[index]
         return retString
 
+#
+# DoubleRotation
+#
+# This class simply applies the BasicRotatingCipher twice to the input.
+#
 class DoubleRotation(Cipher):
     
     def encrypt(self, text):
