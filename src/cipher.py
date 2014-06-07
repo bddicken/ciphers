@@ -91,3 +91,16 @@ class DoubleRotation(Cipher):
         second = c2.decrypt(first)
         return second
 
+#
+# CaesarSquare
+#
+# Uses Caesars square cipher.
+#
+class CaesarSquare(Cipher):
+    
+    def encrypt(self, text):
+        print "implement CSq encrypt"
+    
+    def decrypt(self, text):
+        print "implement CSq decrypt"
+
